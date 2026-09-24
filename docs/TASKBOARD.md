@@ -6,7 +6,7 @@ Status vocabulary: AI-agent.md §20. The Project Lead (main session) keeps this 
 
 | ID | Title | Type / Risk | Status | Notes |
 |---|---|---|---|---|
-| M0 | Specification (pre-code checklist) | DOC / HIGH | NEEDS_REVIEW | `docs/SPECIFICATION.md`, written by the main session. Needs a methodology-auditor pass before M4/M5 start. |
+| M0 | Specification (pre-code checklist) | DOC / HIGH | DONE | `docs/SPECIFICATION.md` v1.2.1, audited (M0-R) and approved by the human on 2026-09-24. |
 | M1 | API / data ingestion | API / MEDIUM | DONE | data-qa PASSED, then qa-runner regression PASSED (2026-09-24). |
 | M2 | Data quality (T1–T4) | DATA / MEDIUM | DONE | data-qa PASSED on every task, then qa-runner regression PASSED on 2026-09-24 (219 tests, deterministic outputs, DoD met). |
 
@@ -15,8 +15,8 @@ Status vocabulary: AI-agent.md §20. The Project Lead (main session) keeps this 
 | ID | Title | Type / Risk | Status | Notes |
 |---|---|---|---|---|
 | HUMAN-1 | Register the scheduled refresh task | OPS | READY | The human runs `scripts/register_refresh_task.ps1` (see README). Agents never run it. |
-| M0-R | methodology-auditor pass on `docs/SPECIFICATION.md` | DOC / HIGH | READY | Required before M4 and M5 start. |
-| M3 | EDA | STAT / MEDIUM | BACKLOG | stat-analyst implements, statistician reviews. |
+| M0-R | methodology-auditor pass on `docs/SPECIFICATION.md` | DOC / HIGH | DONE | SPECIFICATION v1.2.1 approved by the human (sha256 e41f63ef…09474). |
+| M3 | EDA | STAT / MEDIUM | IN_PROGRESS | Spec Rev 3.1 PASSED. stat-analyst is implementing it, then the statistician and qa-runner review. Range 00001–01190. |
 
 ## M2 — Data quality
 
@@ -92,6 +92,18 @@ The audit record is `docs/design/M2-audit-2026-09-24.md`, with verdict REWORK.
 - The remaining findings (1, 3, 6, 9–17 and 19) are accepted as recommended by the auditor.
 - D7 (re-audit N1): `mirror_shrink` is WARN (exit 10), consistent with D3. Confirmed by the human.
 - Design Revision 3: methodology-auditor PASSED (line-diff check). The design is final for implementation.
+
+### Decisions — SPECIFICATION approval (human Project Lead, 2026-09-24)
+SPECIFICATION v1.2.1 APPROVED sha256=e41f63ef47ea066f14e5effb41bf9f4b7ebd8d79641604b69a10323837e09474
+- Approved after M0-R: the audit plus 3 re-audits, all PASSED (`docs/design/M0-audit-2026-09-24.md`). This version is binding for M3–M6. Any change needs a change request, a new version and a new approval.
+- M3 EDA spec Rev 3.1 is PASSED and may be implemented. A real-data run is allowed now that this approval line exists.
+
+### Data-exposure record (Project Lead, 2026-09-24)
+- **E1. M0-R auditor access.** The auditor read metadata only over 00001–01401: dataset versions, draw ids, dates and per-year draw counts. It also read two validation-rule counts: special number missing = 0, and special number equal to a main number = 0. No outcome statistic that identifies numbers or sums was computed on draws ≥ 01191. The "≈15 draws with sum 168" figure is a null expectation (1401 × P = 14.70), not an observed count. Risk: low.
+- **E2. Planned M3 exposure (O2 ruling).** M3 EDA will inspect draws 00981–01190, including rolling counts at W = 50/100/200. That is Baseline 2's candidate set and selection block. Therefore:
+  - The W selection rule must be frozen in SPECIFICATION §7 before any M3 output is opened. The rule is argmin of mean validation log loss over {50, 100, 200}; on a tie within 1e-12, choose the larger W.
+  - Every model or feature designed after M3 carries a "validation-exposed" flag. Its validation scores count as optimistic.
+  - Only the frozen test period can support an H6 claim.
 
 ### Flow
 1. **M2-T1** (data-qa) and the **M2-T2 + M2-T3 design** (data-architect, one note at `docs/design/M2-data-quality-and-refresh.md`) run in parallel.
