@@ -1,0 +1,512 @@
+{
+  "as_of": "2026-09-24T12:02:12+07:00",
+  "checks": [
+    {
+      "check_id": "known_issues.file",
+      "findings": [],
+      "metrics": {},
+      "status": "PASS",
+      "summary": "PASS: 0 finding(s), 0 unaccepted"
+    },
+    {
+      "check_id": "curated.schema",
+      "findings": [],
+      "metrics": {},
+      "status": "PASS",
+      "summary": "PASS: 0 finding(s), 0 unaccepted"
+    },
+    {
+      "check_id": "curated.lineage",
+      "findings": [],
+      "metrics": {},
+      "status": "PASS",
+      "summary": "PASS: 0 finding(s), 0 unaccepted"
+    },
+    {
+      "check_id": "curated.missing",
+      "findings": [],
+      "metrics": {
+        "rows": 1401
+      },
+      "status": "PASS",
+      "summary": "PASS: 0 finding(s), 0 unaccepted"
+    },
+    {
+      "check_id": "curated.duplicates",
+      "findings": [],
+      "metrics": {},
+      "status": "PASS",
+      "summary": "PASS: 0 finding(s), 0 unaccepted"
+    },
+    {
+      "check_id": "curated.ranges",
+      "findings": [],
+      "metrics": {},
+      "status": "PASS",
+      "summary": "PASS: 0 finding(s), 0 unaccepted"
+    },
+    {
+      "check_id": "coverage.gaps",
+      "findings": [
+        {
+          "accepted": false,
+          "detail": "gap from 2018-02-13 to 2018-02-17 skips at least one scheduled draw date",
+          "draw_date": "2018-02-17",
+          "draw_id": null,
+          "known_issue_id": null,
+          "known_issue_state": null,
+          "level": "INFO",
+          "observed": null,
+          "rule": "draw_cadence",
+          "source": "vietlott_official"
+        },
+        {
+          "accepted": false,
+          "detail": "gap from 2019-02-02 to 2019-02-07 skips at least one scheduled draw date",
+          "draw_date": "2019-02-07",
+          "draw_id": null,
+          "known_issue_id": null,
+          "known_issue_state": null,
+          "level": "INFO",
+          "observed": null,
+          "rule": "draw_cadence",
+          "source": "vietlott_official"
+        },
+        {
+          "accepted": false,
+          "detail": "gap from 2020-01-23 to 2020-01-28 skips at least one scheduled draw date",
+          "draw_date": "2020-01-28",
+          "draw_id": null,
+          "known_issue_id": null,
+          "known_issue_state": null,
+          "level": "INFO",
+          "observed": null,
+          "rule": "draw_cadence",
+          "source": "vietlott_official"
+        },
+        {
+          "accepted": false,
+          "detail": "gap from 2020-03-31 to 2020-04-25 skips at least one scheduled draw date",
+          "draw_date": "2020-04-25",
+          "draw_id": null,
+          "known_issue_id": null,
+          "known_issue_state": null,
+          "level": "INFO",
+          "observed": null,
+          "rule": "draw_cadence",
+          "source": "vietlott_official"
+        },
+        {
+          "accepted": false,
+          "detail": "gap from 2020-08-25 to 2020-08-29 skips at least one scheduled draw date",
+          "draw_date": "2020-08-29",
+          "draw_id": null,
+          "known_issue_id": null,
+          "known_issue_state": null,
+          "level": "INFO",
+          "observed": null,
+          "rule": "draw_cadence",
+          "source": "vietlott_official"
+        },
+        {
+          "accepted": false,
+          "detail": "gap from 2021-02-09 to 2021-02-13 skips at least one scheduled draw date",
+          "draw_date": "2021-02-13",
+          "draw_id": null,
+          "known_issue_id": null,
+          "known_issue_state": null,
+          "level": "INFO",
+          "observed": null,
+          "rule": "draw_cadence",
+          "source": "vietlott_official"
+        },
+        {
+          "accepted": false,
+          "detail": "gap from 2021-07-22 to 2021-08-19 skips at least one scheduled draw date",
+          "draw_date": "2021-08-19",
+          "draw_id": null,
+          "known_issue_id": null,
+          "known_issue_state": null,
+          "level": "INFO",
+          "observed": null,
+          "rule": "draw_cadence",
+          "source": "vietlott_official"
+        },
+        {
+          "accepted": false,
+          "detail": "gap from 2022-01-29 to 2022-02-03 skips at least one scheduled draw date",
+          "draw_date": "2022-02-03",
+          "draw_id": null,
+          "known_issue_id": null,
+          "known_issue_state": null,
+          "level": "INFO",
+          "observed": null,
+          "rule": "draw_cadence",
+          "source": "vietlott_official"
+        },
+        {
+          "accepted": false,
+          "detail": "gap from 2023-01-19 to 2023-01-24 skips at least one scheduled draw date",
+          "draw_date": "2023-01-24",
+          "draw_id": null,
+          "known_issue_id": null,
+          "known_issue_state": null,
+          "level": "INFO",
+          "observed": null,
+          "rule": "draw_cadence",
+          "source": "vietlott_official"
+        },
+        {
+          "accepted": false,
+          "detail": "gap from 2024-02-08 to 2024-02-13 skips at least one scheduled draw date",
+          "draw_date": "2024-02-13",
+          "draw_id": null,
+          "known_issue_id": null,
+          "known_issue_state": null,
+          "level": "INFO",
+          "observed": null,
+          "rule": "draw_cadence",
+          "source": "vietlott_official"
+        },
+        {
+          "accepted": false,
+          "detail": "gap from 2025-01-25 to 2025-01-30 skips at least one scheduled draw date",
+          "draw_date": "2025-01-30",
+          "draw_id": null,
+          "known_issue_id": null,
+          "known_issue_state": null,
+          "level": "INFO",
+          "observed": null,
+          "rule": "draw_cadence",
+          "source": "vietlott_official"
+        },
+        {
+          "accepted": false,
+          "detail": "gap from 2026-02-14 to 2026-02-19 skips at least one scheduled draw date",
+          "draw_date": "2026-02-19",
+          "draw_id": null,
+          "known_issue_id": null,
+          "known_issue_state": null,
+          "level": "INFO",
+          "observed": null,
+          "rule": "draw_cadence",
+          "source": "vietlott_official"
+        }
+      ],
+      "metrics": {
+        "draws": 1401
+      },
+      "status": "PASS",
+      "summary": "PASS: 12 finding(s), 0 unaccepted"
+    },
+    {
+      "check_id": "coverage.freshness",
+      "findings": [
+        {
+          "accepted": false,
+          "detail": "draw scheduled for 2026-09-24 has not yet reached its 21:00 ICT publication deadline",
+          "draw_date": "2026-09-24",
+          "draw_id": null,
+          "known_issue_id": null,
+          "known_issue_state": null,
+          "level": "INFO",
+          "observed": null,
+          "rule": "freshness_pending",
+          "source": "vietlott_official"
+        }
+      ],
+      "metrics": {
+        "missed": 0
+      },
+      "status": "PASS",
+      "summary": "PASS: 1 finding(s), 0 unaccepted"
+    },
+    {
+      "check_id": "staging.schema",
+      "findings": [],
+      "metrics": {},
+      "status": "PASS",
+      "summary": "PASS: 0 finding(s), 0 unaccepted"
+    },
+    {
+      "check_id": "ingestion.runs",
+      "findings": [
+        {
+          "accepted": false,
+          "detail": "latest github_mirror run 20260924T050219Z_4ce417 is partial",
+          "draw_date": null,
+          "draw_id": null,
+          "known_issue_id": null,
+          "known_issue_state": null,
+          "level": "INFO",
+          "observed": null,
+          "rule": "run_partial",
+          "source": "github_mirror"
+        }
+      ],
+      "metrics": {
+        "runs": 5
+      },
+      "status": "PASS",
+      "summary": "PASS: 1 finding(s), 0 unaccepted"
+    },
+    {
+      "check_id": "quality_log.open",
+      "findings": [
+        {
+          "accepted": true,
+          "detail": "open: chronological_order on draw 00944 (draw 00944 dated 2022-09-23 not after draw 00943 dated 2023-10-12)",
+          "draw_date": null,
+          "draw_id": "00944",
+          "known_issue_id": "KI-001",
+          "known_issue_state": "active",
+          "level": "WARN",
+          "observed": null,
+          "rule": "chronological_order",
+          "source": "github_mirror"
+        },
+        {
+          "accepted": true,
+          "detail": "open: chronological_order on draw 00944 (draw 00944 dated 2022-09-23 not after draw 00943 dated 2023-10-12)",
+          "draw_date": null,
+          "draw_id": "00944",
+          "known_issue_id": "KI-001",
+          "known_issue_state": "active",
+          "level": "WARN",
+          "observed": null,
+          "rule": "chronological_order",
+          "source": "github_mirror"
+        }
+      ],
+      "metrics": {
+        "rows": 6
+      },
+      "status": "PASS",
+      "summary": "PASS: 2 finding(s), 0 unaccepted"
+    },
+    {
+      "check_id": "reconcile.sources",
+      "findings": [
+        {
+          "accepted": true,
+          "detail": "draw 00944 is in vietlott_official but not in github_mirror",
+          "draw_date": null,
+          "draw_id": "00944",
+          "known_issue_id": "KI-001",
+          "known_issue_state": "active",
+          "level": "WARN",
+          "observed": null,
+          "rule": "reconcile.only_left",
+          "source": "github_mirror"
+        }
+      ],
+      "metrics": {
+        "matched": 1400,
+        "mirror_lag_draws": 0
+      },
+      "status": "PASS",
+      "summary": "PASS: 1 finding(s), 0 unaccepted"
+    },
+    {
+      "check_id": "raw.checksums",
+      "findings": [],
+      "metrics": {
+        "runs": 5
+      },
+      "status": "PASS",
+      "summary": "PASS: 0 finding(s), 0 unaccepted"
+    },
+    {
+      "check_id": "refresh.history",
+      "findings": [
+        {
+          "accepted": false,
+          "detail": "C:\\Users\\Admin\\Downloads\\vietlott\\data\\logs\\refresh_log.csv is absent",
+          "draw_date": null,
+          "draw_id": null,
+          "known_issue_id": null,
+          "known_issue_state": null,
+          "level": "INFO",
+          "observed": null,
+          "rule": "input_missing",
+          "source": "system"
+        }
+      ],
+      "metrics": {},
+      "status": "PASS",
+      "summary": "PASS: 1 finding(s), 0 unaccepted"
+    }
+  ],
+  "dataset": {
+    "dataset_version": "ds_cbdf3834368e",
+    "draws": 1401,
+    "first_draw_date": "2017-08-01",
+    "first_draw_id": "00001",
+    "last_draw_date": "2026-09-22",
+    "last_draw_id": "01401",
+    "source": "vietlott_official"
+  },
+  "ingestion_runs": [
+    {
+      "error_message": null,
+      "finished_at": "2026-09-24T03:10:12.015701+00:00",
+      "mode": "full",
+      "rows_inserted": 1401,
+      "rows_received": 1401,
+      "rows_rejected": 0,
+      "rows_skipped": 0,
+      "run_id": "20260924T030626Z_00d6df",
+      "source": "vietlott_official",
+      "started_at": "2026-09-24T03:06:26.092768+00:00",
+      "status": "success"
+    },
+    {
+      "error_message": null,
+      "finished_at": "2026-09-24T03:10:13.165054+00:00",
+      "mode": "full",
+      "rows_inserted": 1400,
+      "rows_received": 1401,
+      "rows_rejected": 1,
+      "rows_skipped": 1,
+      "run_id": "20260924T031012Z_13d471",
+      "source": "github_mirror",
+      "started_at": "2026-09-24T03:10:12.906580+00:00",
+      "status": "partial"
+    },
+    {
+      "error_message": null,
+      "finished_at": "2026-09-24T03:10:32.474877+00:00",
+      "mode": "incremental",
+      "rows_inserted": 0,
+      "rows_received": 8,
+      "rows_rejected": 0,
+      "rows_skipped": 8,
+      "run_id": "20260924T031030Z_82a958",
+      "source": "vietlott_official",
+      "started_at": "2026-09-24T03:10:30.210782+00:00",
+      "status": "success"
+    },
+    {
+      "error_message": null,
+      "finished_at": "2026-09-24T05:02:19.473541+00:00",
+      "mode": "incremental",
+      "rows_inserted": 0,
+      "rows_received": 8,
+      "rows_rejected": 0,
+      "rows_skipped": 8,
+      "run_id": "20260924T050212Z_85fdba",
+      "source": "vietlott_official",
+      "started_at": "2026-09-24T05:02:12.047671+00:00",
+      "status": "success"
+    },
+    {
+      "error_message": null,
+      "finished_at": "2026-09-24T05:02:19.818314+00:00",
+      "mode": "incremental",
+      "rows_inserted": 0,
+      "rows_received": 1401,
+      "rows_rejected": 1,
+      "rows_skipped": 1401,
+      "run_id": "20260924T050219Z_4ce417",
+      "source": "github_mirror",
+      "started_at": "2026-09-24T05:02:19.474609+00:00",
+      "status": "partial"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "configs/known_issues.json",
+      "rows": null,
+      "sha256": "15a9df0cbf7d81995e4c7600ec489f2dfa6ff91a1205d8df68a50b4098a92f5e"
+    },
+    {
+      "path": "data/curated/dataset_manifest.json",
+      "rows": null,
+      "sha256": "46d626e9dede44c5ff6f30328367da4b6a4f0742f94d7e97a1cd1667b97907df"
+    },
+    {
+      "path": "data/curated/dim_number.csv",
+      "rows": 55,
+      "sha256": "1e00cb8f7b81b51fce083fbe2b868fa1aa3b6c3e4a2beb9923b8f22ed296d284"
+    },
+    {
+      "path": "data/curated/fact_draw.csv",
+      "rows": 1401,
+      "sha256": "565b33f67d6339de5de00e45e149578859c5e184a666ef5d13bc88f99e2e83cf"
+    },
+    {
+      "path": "data/curated/fact_draw_number.csv",
+      "rows": 9807,
+      "sha256": "0961e674ea5466cf093f919b9845ed92cfddba6129b7a1d388490192f75f26c6"
+    },
+    {
+      "path": "data/logs/ingestion_log.csv",
+      "rows": 5,
+      "sha256": "cb0239bc360eec18dff69e312a62f204a9dbee3e25174902bbecd343cefc6270"
+    },
+    {
+      "path": "data/logs/quality_log.csv",
+      "rows": 6,
+      "sha256": "f12f3bd455ea236e371e4d278ff8dc2260808c081008b30f2b08e5e486a8fbbf"
+    },
+    {
+      "path": "data/raw/github_mirror/20260924T031012Z_13d471/manifest.jsonl",
+      "rows": null,
+      "sha256": "c9de1af96179b2c252a91482a4cbc8a39c327b4c640e904f6284ab89cc2f8108"
+    },
+    {
+      "path": "data/raw/github_mirror/20260924T050219Z_4ce417/manifest.jsonl",
+      "rows": null,
+      "sha256": "6fec4886b1add3ea4dff7661de884f0d5a3b3c79c0aa4c5b07b687e1255bdd9c"
+    },
+    {
+      "path": "data/raw/vietlott_official/20260924T030626Z_00d6df/manifest.jsonl",
+      "rows": null,
+      "sha256": "f1e69041ab9a106742058099a5e8032366a2c4432f0ff70cca7e979ab1889855"
+    },
+    {
+      "path": "data/raw/vietlott_official/20260924T031030Z_82a958/manifest.jsonl",
+      "rows": null,
+      "sha256": "a1b735b9a46f4b68f847466dbffb94978cd0b819218ada3b817411ad9aec64b0"
+    },
+    {
+      "path": "data/raw/vietlott_official/20260924T050212Z_85fdba/manifest.jsonl",
+      "rows": null,
+      "sha256": "e1296ce14964aec839af010095968c3be6d1a5e45ab78a2afc6d8b3cebdbca5f"
+    },
+    {
+      "path": "data/staging/github_mirror/draws.csv",
+      "rows": 1400,
+      "sha256": "6b9f38fba898a050ff63598ff9dff870313af2e9d5b2584ec7d0d2249e404c7b"
+    },
+    {
+      "path": "data/staging/vietlott_official/draws.csv",
+      "rows": 1401,
+      "sha256": "825e63c4cc4d9773e30bf0f2db9029cdd345aa83805b3a52001e2df46037d9d2"
+    }
+  ],
+  "known_issues": [
+    {
+      "id": "KI-001",
+      "matched": {
+        "chronological_order": 2,
+        "reconcile.only_left": 1
+      },
+      "state": "active"
+    }
+  ],
+  "lock_held": true,
+  "overall_status": "PASS",
+  "report_date": "2026-09-24",
+  "run_context": "refresh",
+  "schema_version": "1.0",
+  "summary": {
+    "accepted": 3,
+    "duplicate": 0,
+    "ingestion_failures": 0,
+    "invalid_ranges": 0,
+    "missing": 0,
+    "proposed": 0,
+    "schema_errors": 0
+  }
+}

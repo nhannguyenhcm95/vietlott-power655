@@ -1,0 +1,7 @@
+check_id,run_id,draw_id,rule,status,detail
+20260924T031012Z_13d471-00000,20260924T031012Z_13d471,00944,draw_weekday,warning,"draw_date 2022-09-23 is a Friday, not Tue/Thu/Sat"
+20260924T031012Z_13d471-00001,20260924T031012Z_13d471,00944,special_present,warning,special number missing
+20260924T031012Z_13d471-00002,20260924T031012Z_13d471,00944,chronological_order,error,draw 00944 dated 2022-09-23 not after draw 00943 dated 2023-10-12
+20260924T050219Z_4ce417-00000,20260924T050219Z_4ce417,00944,draw_weekday,warning,"draw_date 2022-09-23 is a Friday, not Tue/Thu/Sat"
+20260924T050219Z_4ce417-00001,20260924T050219Z_4ce417,00944,special_present,warning,special number missing
+20260924T050219Z_4ce417-00002,20260924T050219Z_4ce417,00944,chronological_order,error,draw 00944 dated 2022-09-23 not after draw 00943 dated 2023-10-12

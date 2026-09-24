@@ -1,0 +1,19 @@
+{
+  "dataset_version": "ds_cbdf3834368e",
+  "source": "vietlott_official",
+  "built_at": "2026-09-24T03:10:28.476659+00:00",
+  "draws": 1401,
+  "first_draw": {
+    "draw_id": "00001",
+    "draw_date": "2017-08-01"
+  },
+  "last_draw": {
+    "draw_id": "01401",
+    "draw_date": "2026-09-22"
+  },
+  "files": {
+    "fact_draw.csv": 1401,
+    "fact_draw_number.csv": 9807,
+    "dim_number.csv": 55
+  }
+}

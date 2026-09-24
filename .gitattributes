@@ -1,0 +1,3 @@
+# Byte-exact: raw archives and reports are checksummed (sha256); never convert line endings.
+data/** -text
+reports/** -text
