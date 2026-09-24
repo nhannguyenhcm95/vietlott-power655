@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Secrets / local env
+.env
+
+# Runtime state (not part of the dataset)
+data/logs/app.log
+data/logs/ALERT.txt
+data/logs/scheduler/
+data/.refresh.lock
+data/.refresh.lock.stale.*
+*.tmp
+
+# Editor / OS
+.vscode/
+.idea/
+Thumbs.db
+.claude/settings.local.json
