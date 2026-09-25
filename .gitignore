@@ -19,3 +19,6 @@ data/.refresh.lock.stale.*
 .idea/
 Thumbs.db
 .claude/settings.local.json
+
+# Provisional experiment outputs (A-F2): kept locally, never committed
+outputs/*/provisional/

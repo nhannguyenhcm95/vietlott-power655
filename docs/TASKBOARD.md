@@ -16,7 +16,7 @@ Status vocabulary: AI-agent.md §20. The Project Lead (main session) keeps this 
 |---|---|---|---|---|
 | HUMAN-1 | Register the scheduled refresh task | OPS | READY | The human runs `scripts/register_refresh_task.ps1` (see README). Agents never run it. |
 | M0-R | methodology-auditor pass on `docs/SPECIFICATION.md` | DOC / HIGH | DONE | SPECIFICATION v1.2.1 approved by the human (sha256 e41f63ef…09474). |
-| M5 | Baselines 0–2 on development folds (EXP-001) | ML / HIGH | IN_PROGRESS | ml-researcher writes `docs/experiments/EXP-001.md` before any fit, ml-engineer implements it, and methodology-auditor reviews. Rules: loader truncated at 01190 with a test, the validation-exposed flag (E2), commit before every recorded run (A-F2), and K ≤ 4 families (§9.3). |
+| M5 | Baselines 0–2 on development folds (EXP-001) | ML / HIGH | IN_PROGRESS | EXP-001 r2 audit PASSED (sha256 a1959d8c…3872). ml-engineer is implementing it; the recorded run comes after commit. Then review, and the human records the finalists under Decisions. |
 | M4 | Confirmatory tests H1–H5 (§6, 13 tests with Holm, range 00001–01190) | STAT / HIGH | DONE | 0 of 13 rejected at FWER 0.05, so there is no confirmatory evidence against H1–H5 on the development draws. Official run: code 2fb9ee8, outputs in `outputs/m4/through_01190/`. Statistician re-review PASSED, methodology-auditor final audit PASSED, human approval 2026-09-25. |
 | M4-F | M4 follow-ups | STAT / LOW | BACKLOG | F1: add a slow calibration run for C8 alone at n = 510; it is required before the replication. F2: merge the two pooling implementations when M3-R1 is fixed. Nits: fix the C9/C10 CI label (either give the CI of the difference, −0.08 to 4.19, or relabel it), show N only for C7, test the "parent rejected" label, and add the independence caveat to the ≈0.23 line. |
 | M3-R1 | EDA follow-ups | STAT / LOW | BACKLOG | R1: collapse the pooling leftover when n ≤ 106, and extend T13 to n = 10/60/100. A1: add tests pinning `exact_pmf_approx_band` and the `within_draw_` labels. A2: the `draw_gaps.png` caption should read "exact expected counts; approximate band". stat-analyst implements, qa-runner reviews. Real outputs are unaffected. |
@@ -124,6 +124,13 @@ These come from the statistician's M4 re-review. The frozen spec v1.2.1 is NOT e
 - **A-F1. Calibration.** The §6.5 FWER clause is vacuous at inner R = 199, so the value 0.0000 must never be cited (see SD-1). FWER control rests on two facts: the Monte Carlo and permutation p-values are exactly valid, and Holm controls FWER under any dependence. The marginal calibration passed, and "rejects at 0.05" is read on raw p. C8 is not calibrated (SD-2). A slow C8-only calibration at n = 510 is required before the post-M6 replication.
 - **A-F2. Provisional run.** The provisional M4 code was never committed (cd4e668-dirty), and its outputs were overwritten. Only the recorded values could be checked, and they match. New rule from M5 onward: commit before any run whose result is recorded, and keep provisional outputs in a separate directory.
 - **E3. Auditor data access.** During the M4 audit, the auditor printed only metadata above 01190: the draw_id of row 01191, and the draw_id and dataset_version of row 01402. No outcomes were printed. Risk: low.
+
+### M5 records (Project Lead, 2026-09-25)
+- **EXP-001 audit:** r1 REWORK (text only), then r2 PASSED on line-diff (sha256 a1959d8c8464e7f4a03be1d765828256e91f698e6f0f14371310c07b211c3872).
+- **§7 tie rule (audit finding 4), Project Lead reading pending human confirmation.** When selecting W, a near-tie means within 1e-12 of the minimum, not chained; the larger W wins. The approved spec text is ambiguous and frozen, so this is recorded as an interpretation, not an edit. In practice it never matters, because distinct W cannot tie at 1e-12.
+- **Null reference from the auditor simulation** (3000 histories of 1190 draws):
+  - W* = 200 in 100% of runs. Any other W* triggers a bug and leakage check first.
+  - B1 beats B0 on validation in about 4% of runs.
 
 ### Data-exposure record (Project Lead, 2026-09-24)
 - **E1. M0-R auditor access.** The auditor read metadata only over 00001–01401: dataset versions, draw ids, dates and per-year draw counts. It also read two validation-rule counts: special number missing = 0, and special number equal to a main number = 0. No outcome statistic that identifies numbers or sums was computed on draws ≥ 01191. The "≈15 draws with sum 168" figure is a null expectation (1401 × P = 14.70), not an observed count. Risk: low.
