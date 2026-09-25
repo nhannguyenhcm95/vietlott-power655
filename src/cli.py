@@ -10,6 +10,7 @@
     python -m src.cli eda [--through-draw 01190] [--out-dir outputs/eda] [--windows 50,100,200]
                            [--n-blocks 5] [--mc-reps 10000] [--override-ceiling REF]
     python -m src.cli m4 [--through-draw 01190] [--out-dir outputs/m4] [--reps 10000]
+    python -m src.cli m5-exp001 [--provisional]
 """
 from __future__ import annotations
 
@@ -33,6 +34,7 @@ from src.logging_utils import configure_logging
 from src.reporting.data_quality import build_quality_report, write_quality_report
 from src.reporting import eda as eda_reporting
 from src.reporting import m4 as m4_reporting
+from src.reporting import m5 as m5_reporting
 from src.transformation import tables
 from src.validation.lineage import check_frozen_prefix
 from src.validation.reconcile import reconcile
@@ -97,6 +99,10 @@ def main(argv: list[str] | None = None, paths: Paths | None = None) -> int:
     p.add_argument("--through-draw", type=str, default="01190")
     p.add_argument("--out-dir", type=str, default=None)
     p.add_argument("--reps", type=int, default=10_000)
+
+    p = sub.add_parser("m5-exp001", help="M5 EXP-001 baselines B0/B1/B2 (SPECIFICATION section 7-9); range gated at 01190")
+    p.add_argument("--provisional", action="store_true",
+                    help="allow a dirty tree; writes only to outputs/m5/provisional/EXP-001/ (gitignored)")
 
     args = parser.parse_args(argv)
     paths = paths if paths is not None else Paths()
@@ -214,6 +220,11 @@ def main(argv: list[str] | None = None, paths: Paths | None = None) -> int:
             out_dir = Path(args.out_dir) if args.out_dir else (paths.root / "outputs" / "m4")
             code = m4_reporting.run_m4(paths, args.through_draw, out_dir, R=args.reps)
             print(json.dumps({"exit_code": code, "through_draw": args.through_draw, "out_dir": str(out_dir)}, indent=2))
+            return code
+
+        if args.cmd == "m5-exp001":
+            code = m5_reporting.run_m5(paths, provisional=args.provisional)
+            print(json.dumps({"exit_code": code, "provisional": args.provisional}, indent=2))
             return code
 
         return 2

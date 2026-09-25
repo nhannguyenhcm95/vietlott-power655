@@ -134,10 +134,29 @@ per-number/pair rows) and `eda_manifest.json` (versions, spec version/sha256, pa
 Every CSV carries `source_dataset_version`, `analysis_version`, `through_draw`, `override_ref`. Code:
 `src/statistics/{null_model,null_reference,eda,mc_reference}.py` (pure) and `src/reporting/{eda,eda_charts}.py` (I/O).
 
+### Baselines (M5, EXP-001)
+
+`python -m src.cli m5-exp001 [--provisional]` scores three baselines (B0 theoretical uniform, B1
+historical frequency, B2 rolling window at W ∈ {50, 100, 200}) as pure marginal probability
+features (`c_k(t)`, `c_k^W(t)`; no fitted quantities) over the 14 development folds defined in
+`docs/experiments/EXP-001.md` (r2), restricted to draws 00001–01190. It reports per-draw log loss
+and Brier score, ECE/reliability, a secondary draw-sum forecast, and a circular block bootstrap
+(paired across configurations) for every fold, `dev_pooled` (690 draws) and `validation` (210
+draws). Baseline 2's window W\* is selected mechanically as the argmin of mean validation log loss
+over {50, 100, 200} (ties broken toward the larger W); the selection is `validation-exposed` and
+reported as `selection_biased`. Like M4, the run refuses (exit 2, nothing written) unless
+`docs/SPECIFICATION.md` is approved and the working tree is clean (`code_version` ending in
+`-dirty` refuses unless `--provisional`, which writes only to the gitignored
+`outputs/m5/provisional/EXP-001/`); a recorded run writes to `outputs/m5/EXP-001/<run_id>/` and
+never overwrites an existing run. No per-number output, no rankings, no forecast for any draw
+above 01190. Code: `src/models/baselines.py`, `src/evaluation/{folds,metrics,bootstrap,selection}.py`,
+`src/reporting/{m5,m5_charts}.py`.
+
 ## Status
 
 - M0 specification: done ([docs/SPECIFICATION.md](docs/SPECIFICATION.md))
 - M1 ingestion: done
 - M2 data quality: validation, quality log, curated layer, `quality-report` (M2-T2) and `refresh`/`status` (M2-T3) done
 - M3 EDA: implemented per `docs/design/M3-eda-spec.md` Rev 3.2; range 00001–01190
-- M4+ : not started
+- M5 baselines (EXP-001): implemented per `docs/experiments/EXP-001.md` r2; range 00001–01190; recorded run pending review
+- M4 and other milestones: see `docs/TASKBOARD.md` for current status (not reflected above)
