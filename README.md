@@ -108,9 +108,36 @@ Add a source by subclassing `DrawSource` (`iter_raw_pages` + pure `parse`) and r
 
 `dataset_version` is a hash of draw content only, so the same data always has the same version.
 
+### EDA (M3)
+
+`python -m src.cli eda [--through-draw 01190] [--out-dir outputs/eda] [--windows 50,100,200] [--n-blocks 5] [--mc-reps 10000] [--override-ceiling REF]`
+is offline, deterministic and descriptive only: draw-level and number-level metrics against the uniform 6-of-55
+null (with 1 special drawn from the remaining 49), each reported as OBSERVED next to its NULL REFERENCE with a
+pointwise band and, where defined, an MC-derived simultaneous band. It produces **no** p-values, test verdicts or
+"significant/anomaly" language, and no "hot/cold/overdue/lucky" labels or rankings; inference is M4's job. Design:
+`docs/design/M3-eda-spec.md` (Rev 3.2, PASSED).
+
+Range is gated at draw `01190` (`EDA_MAX_THROUGH_DRAW` in `src/reporting/eda.py`, the M0-R ruling): a request above
+the ceiling exits 2 and writes nothing unless `--override-ceiling REF` names a decision line in
+`docs/TASKBOARD.md`'s "Decisions" section containing the literal text `EDA ceiling override` — a one-time
+post-M6-lock replication, never used to feed models. The run also refuses (exit 2, nothing written) unless
+`docs/SPECIFICATION.md` is approved at ≥ v1.2 with a matching sha256 in a Decisions line
+(`SPECIFICATION vX.Y[.Z] APPROVED sha256=<hex>`). `src/reporting/eda.load_analysis_draws` is the only EDA code
+that reads `fact_draw.csv`; rows after the cutoff are never read, validated, aggregated or logged.
+
+Outputs go to `<out-dir>/through_<DDDDD>[_override]/`: per-metric CSVs (`draw_metrics`, `draw_metric_distribution`,
+`null_pmfs`, `draw_metric_summary`, `number_frequency[_by_period]`, `number_rolling_W{W}`,
+`number_rolling_extremes_W{W}`, `number_interarrival`, `number_appearance`, `number_cumulative`,
+`special_frequency`, `pair_cooccurrence`, `pair_count_distribution`, `stability_blocks`, `mc_reference`), matching
+PNG charts (`src/reporting/eda_charts.py`), a templated `eda_summary.md` (fixed text + count sentences only, no
+per-number/pair rows) and `eda_manifest.json` (versions, spec version/sha256, parameters, seed, per-file sha256).
+Every CSV carries `source_dataset_version`, `analysis_version`, `through_draw`, `override_ref`. Code:
+`src/statistics/{null_model,null_reference,eda,mc_reference}.py` (pure) and `src/reporting/{eda,eda_charts}.py` (I/O).
+
 ## Status
 
 - M0 specification: done ([docs/SPECIFICATION.md](docs/SPECIFICATION.md))
 - M1 ingestion: done
 - M2 data quality: validation, quality log, curated layer, `quality-report` (M2-T2) and `refresh`/`status` (M2-T3) done
-- M3+ : not started
+- M3 EDA: implemented per `docs/design/M3-eda-spec.md` Rev 3.2; range 00001–01190
+- M4+ : not started

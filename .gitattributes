@@ -2,3 +2,4 @@
 data/** -text
 reports/** -text
 docs/** -text
+outputs/** -text

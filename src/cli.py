@@ -7,6 +7,8 @@
     python -m src.cli quality-report [--as-of ISO8601] [--out-dir reports] [--known-issues configs/known_issues.json]
     python -m src.cli refresh [--lock-timeout-minutes 120] [--as-of ISO8601]
     python -m src.cli status
+    python -m src.cli eda [--through-draw 01190] [--out-dir outputs/eda] [--windows 50,100,200]
+                           [--n-blocks 5] [--mc-reps 10000] [--override-ceiling REF]
 """
 from __future__ import annotations
 
@@ -28,6 +30,7 @@ from src.ingestion.raw_archive import RawArchive
 from src.ingestion.refresh import append_locked_refresh_log_row, run_refresh
 from src.logging_utils import configure_logging
 from src.reporting.data_quality import build_quality_report, write_quality_report
+from src.reporting import eda as eda_reporting
 from src.transformation import tables
 from src.validation.lineage import check_frozen_prefix
 from src.validation.reconcile import reconcile
@@ -79,6 +82,14 @@ def main(argv: list[str] | None = None, paths: Paths | None = None) -> int:
     p.add_argument("--as-of", type=_iso_datetime_with_tz, default=None)
 
     sub.add_parser("status", help="print refresh health (last run, alert, next scheduled draw)")
+
+    p = sub.add_parser("eda", help="descriptive EDA (M3 spec); range gated at 01190 unless overridden")
+    p.add_argument("--through-draw", type=str, default="01190")
+    p.add_argument("--out-dir", type=str, default=None)
+    p.add_argument("--windows", type=str, default="50,100,200")
+    p.add_argument("--n-blocks", type=int, default=5)
+    p.add_argument("--mc-reps", type=int, default=10_000)
+    p.add_argument("--override-ceiling", dest="override_ceiling", type=str, default=None)
 
     args = parser.parse_args(argv)
     paths = paths if paths is not None else Paths()
@@ -178,6 +189,19 @@ def main(argv: list[str] | None = None, paths: Paths | None = None) -> int:
 
         if args.cmd == "status":
             return _print_status(paths)
+
+        if args.cmd == "eda":
+            out_dir = Path(args.out_dir) if args.out_dir else (paths.root / "outputs" / "eda")
+            try:
+                windows = [int(w) for w in args.windows.split(",") if w.strip()]
+            except ValueError:
+                print(json.dumps({"exit_code": 2, "error": f"--windows {args.windows!r} must be a comma-separated list of ints"}, indent=2))
+                return 2
+            code = eda_reporting.run_eda(
+                paths, args.through_draw, out_dir, windows, args.n_blocks, args.mc_reps, args.override_ceiling,
+            )
+            print(json.dumps({"exit_code": code, "through_draw": args.through_draw, "out_dir": str(out_dir)}, indent=2))
+            return code
 
         return 2
     finally:
