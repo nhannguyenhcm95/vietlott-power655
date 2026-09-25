@@ -1,6 +1,6 @@
 # M3 design — EDA specification
 
-Author: statistician · Revision 3.1 · 2026-09-24 · STATUS: NEEDS_REVIEW (methodology-auditor).
+Author: statistician · Revision 3.2 · 2026-09-25 · STATUS: NEEDS_REVIEW (methodology-auditor).
 Implementer: stat-analyst. Reviewers: statistician (numbers), qa-runner (tests). Binding inputs: `PROJECT_STEPS.md` §7, `docs/SPECIFICATION.md` **v1.2**
 (§5 H1–H5, §6 tests, §7 Baseline 2 W freeze, §8.2 data access),
 and the `docs/design/M0-audit-2026-09-24.md` "Ruling: EDA / M4 data range" plus findings 5 and 11 (applied in §1, §3.1, §5).
@@ -13,6 +13,7 @@ brute-force enumeration on toy (N, k), which read no data. Also read: the M0 aud
 | 2 | M0-R ruling: ceiling 01190, override, partial years, pooling (findings 5, 11). |
 | 3 | M3 review REWORK 1–7: spec-approval gate (§0, §1.6, T14); templated summary (§5, T11); override matching rules (§1.2, T8); `source_dataset_version` is metadata only (§1.3, T8g); pointwise envelope, exact gap expectation, `replicate_references` chunk invariance (§3, §5, T5, T6); T11 word list; special bands use n_nonmissing (§3.1). |
 | 3.1 | Re-audit: E1 limitation wording; E2 spec version compared as an integer tuple (T14); E3 interarrival chart uses exact E_g, gap-cell template names D6, special simultaneous band simulated with n'; E4 pinned SPECIFICATION v1.2.1 hash (pending approval); T11 adds wager\*. |
+| 3.2 | Implementation review `reports/review_2026-09-25_M3.md`: F6 summary labels (`within_draw_*` metric labels, `main:`/`special:` scope prefix, "inter-arrival gaps" limitation; §5); F7 stream 2 registered for the special-number MC (§3.2); F8 pooled `gap` band labelled approximate (§3.1, §5). |
 
 ## 0. Purpose and framing (binding)
 
@@ -119,7 +120,7 @@ All functions take `N=55, k=6` as parameters so that tests can enumerate small c
 | n_ij | Binomial(n, q), **q = C(53,4)/C(55,6) = 1/99**; Σ_{i<j} n_ij = 15n; Σ_{j≠i} n_ij = 5fᵢ |
 
 Pointwise band: `null_lo = binom.ppf(0.025, m, p)` and `null_hi = binom.ppf(0.975, m, p)`. These are central quantiles with coverage ≥ 95%.
-The same rule applies to expected category counts of discrete draw metrics (count per category ~ Binomial(n, P(category))).
+The same rule applies to expected category counts of discrete draw metrics (count per category ~ Binomial(n, P(category))). **Exception (F8):** the pooled within-draw metric `gap` (all 5 spacings, n_obs = 5n) has an exact pmf and exact expected counts, but its 5 spacings per draw are dependent, so its Binomial(5n, P) band and "expected outside" count are **approximate**; its rows carry `reference = exact_pmf_approx_band`.
 Standardized residual `z = (obs − mp)/√(mp(1−p))`. It is descriptive, and no threshold is applied.
 
 **Cell pooling (finding 5), decided from null probabilities and n only, never from observed counts.** The table
@@ -135,8 +136,7 @@ Odd and low counts need no pooling at n ≥ 980 (smallest expected count 10.0). 
 `u = rng.random((m, N))`; `perm = np.argsort(u, axis=1, kind="stable")[:, :k+1] + 1`; `main = sort(perm[:, :k])`; `special = perm[:, k]`.
 This is an exact uniform k-subset, and the special is uniform over the remaining N−k numbers.
 Generate in chunks of whole draws. The output must not depend on chunk size.
-The RNG is `np.random.default_rng(np.random.SeedSequence([EDA_SEED, stream_id]))` with `EDA_SEED = 20260924`. `stream_id` values are fixed
-integers listed in the module (1 = replicate datasets). R = `--mc-reps`, default **10,000**. R, seed, stream and the numpy version are recorded in the manifest.
+The RNG is `np.random.default_rng(np.random.SeedSequence([EDA_SEED, stream_id]))` with `EDA_SEED = 20260924`. `stream_id` values are fixed integers listed in the module: **1** = replicate datasets (main numbers); **2** = special numbers for the S1 simultaneous band, simulated as separate draws over n' = n_nonmissing (marginally uniform on 1..55, the only property S1 uses). M4 streams 101/102/1101/1102 (SPECIFICATION §6.1) are disjoint. R = `--mc-reps`, default **10,000**. R, seed, stream and the numpy version are recorded in the manifest.
 
 ### 3.3 MC-derived references (`src/statistics/mc_reference.py`)
 
@@ -169,7 +169,7 @@ Every CSV carries `source_dataset_version, analysis_version, through_draw, overr
 | file | key columns (plus the version columns) |
 |---|---|
 | `draw_metrics.csv` | draw_id, draw_date, n1..n6, D1–D6 |
-| `draw_metric_distribution.csv` | metric, cell (pooled label, §3.1), observed_count, observed_share, null_prob, expected_count, null_lo, null_hi, reference=`exact` |
+| `draw_metric_distribution.csv` | metric, cell (pooled label, §3.1), observed_count, observed_share, null_prob, expected_count, null_lo, null_hi, reference (`exact`; `exact_pmf_approx_band` for metric `gap`, §3.1) |
 | `null_pmfs.csv` | metric, value, prob (unpooled exact pmfs; null only, no observed data) |
 | `draw_metric_summary.csv` | metric, n, obs_mean, obs_sd, obs_q05/q25/q50/q75/q95, null_mean, null_sd, null_q05…q95 |
 | `number_frequency.csv` | number, parity, band, count, n_draws, rel_freq, wilson_lo, wilson_hi, expected, null_lo, null_hi, sim_lo, sim_hi, z |
@@ -195,17 +195,17 @@ pointwise band and simultaneous band), `number_frequency_by_year.png` (z heatmap
 
 `eda_summary.md` is built **only** from fixed text plus templated count sentences, with the templates held as constants in `src/reporting/eda.py`.
 It never names an individual number or pair and never mentions first or last appearance. Allowed templates (e = exact null expected count Σ P(outside band)):
-- `{metric}: observed mean {x} (null {mu}); {k} of {m} cells outside the pointwise band ({e} expected).`
-- `{k} of 55 numbers outside the pointwise band ({e} expected; nominal 2.75); {j} outside the simultaneous band.` (same form for the special numbers and year cells)
+- `{metric}: observed mean {x} (null {mu}); {k} of {m} cells outside the pointwise band ({e} expected).` Labels: `sum, min, max, range, odd_count, low_count, consecutive_pairs, within_draw_gap, within_draw_max_gap, within_draw_min_gap` (the D6 metrics always carry the `within_draw_` prefix).
+- `{scope}: {k} of 55 numbers outside the pointwise band ({e} expected; nominal 2.75); {j} outside the simultaneous band.` with `scope` ∈ {`main`, `special`}, one line each (year cells are not summarised)
 - `{k} of 1,485 pairs outside the pointwise band ({e} expected; nominal 74); {j} outside the simultaneous band.`
 - `W={W}: {k} of {m} windows above and {j} below the pointwise envelope (≈2.5% expected on each side; windows overlap).`
-- `{k} of {m} within-draw gap cells (D6) outside the pointwise band ({e} expected).` and `{k} of {m} block pairs with r outside the MC 95% interval ({e} expected).`
+- `{k} of {m} block pairs with r outside the MC 95% interval ({e} expected).`
 
 The header records the versions, the approved spec version and sha256, and the parameters. The fixed LIMITATIONS text states that:
 - there is no inference, and M4 decides;
 - pointwise bands and the envelope are exceeded about 5% of the time by chance;
 - rolling windows overlap and are autocorrelated;
-- gaps are memoryless under the null;
+- inter-arrival gaps are memoryless under the null;
 - the drawing order is hidden;
 - MC references carry Monte Carlo error;
 - 2017 and 2025 are partial years;

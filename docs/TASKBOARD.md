@@ -16,7 +16,9 @@ Status vocabulary: AI-agent.md §20. The Project Lead (main session) keeps this 
 |---|---|---|---|---|
 | HUMAN-1 | Register the scheduled refresh task | OPS | READY | The human runs `scripts/register_refresh_task.ps1` (see README). Agents never run it. |
 | M0-R | methodology-auditor pass on `docs/SPECIFICATION.md` | DOC / HIGH | DONE | SPECIFICATION v1.2.1 approved by the human (sha256 e41f63ef…09474). |
-| M3 | EDA | STAT / MEDIUM | IN_PROGRESS | Spec Rev 3.1 PASSED. stat-analyst is implementing it, then the statistician and qa-runner review. Range 00001–01190. |
+| M4 | Confirmatory tests H1–H5 (§6, 13 tests with Holm, range 00001–01190) | STAT / HIGH | READY | The statistician implements or designs `src/statistics` §6, stat-analyst runs it, and methodology-auditor reviews. |
+| M3-R1 | EDA follow-ups | STAT / LOW | BACKLOG | R1: collapse the pooling leftover when n ≤ 106, and extend T13 to n = 10/60/100. A1: add tests pinning `exact_pmf_approx_band` and the `within_draw_` labels. A2: the `draw_gaps.png` caption should read "exact expected counts; approximate band". stat-analyst implements, qa-runner reviews. Real outputs are unaffected. |
+| M3 | EDA | STAT / MEDIUM | DONE | Statistician review PASSED, Rev 3.2 audit PASSED, and the qa-runner points are resolved (2026-09-25). Outputs are in `outputs/eda/through_01190/`. |
 
 ## M2 — Data quality
 
@@ -97,6 +99,15 @@ The audit record is `docs/design/M2-audit-2026-09-24.md`, with verdict REWORK.
 SPECIFICATION v1.2.1 APPROVED sha256=e41f63ef47ea066f14e5effb41bf9f4b7ebd8d79641604b69a10323837e09474
 - Approved after M0-R: the audit plus 3 re-audits, all PASSED (`docs/design/M0-audit-2026-09-24.md`). This version is binding for M3–M6. Any change needs a change request, a new version and a new approval.
 - M3 EDA spec Rev 3.1 is PASSED and may be implemented. A real-data run is allowed now that this approval line exists.
+
+### Decisions — M3 (Project Lead, 2026-09-25)
+- M3 EDA spec Rev 3.2 PASSED the methodology-auditor line-diff audit (sha256 cb9561896363b626f64e1e217956a3d5a0c47c74c87ca1c8c57c98a60832a794). Rev 3.2 supersedes Rev 3.1 for M3.
+- The M3 implementation passed statistician review and re-review (`reports/review_2026-09-25_M3.md`). qa-runner raised three points, all now resolved:
+  - Rev 3.2 has been audited.
+  - README references now point to Rev 3.2.
+  - The freshness WARN is cleared: refresh ingested draw 01402, and curated data is now `ds_aa8808303afa`.
+- The deliverable is `outputs/eda/through_01190/` (analysis_version `ds_16b6be697acb`, built from `ds_cbdf3834368e`). The analysis range does not depend on draws after 01190, so it stays valid.
+- Draw 01402 and every later draw belong to the live holdout (SPECIFICATION §8.5). No analysis may use them now.
 
 ### Data-exposure record (Project Lead, 2026-09-24)
 - **E1. M0-R auditor access.** The auditor read metadata only over 00001–01401: dataset versions, draw ids, dates and per-year draw counts. It also read two validation-rule counts: special number missing = 0, and special number equal to a main number = 0. No outcome statistic that identifies numbers or sums was computed on draws ≥ 01191. The "≈15 draws with sum 168" figure is a null expectation (1401 × P = 14.70), not an observed count. Risk: low.
