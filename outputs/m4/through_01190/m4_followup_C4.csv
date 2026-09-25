@@ -1,0 +1,11 @@
+lag,quantity,abs_stat,R,null,p_raw,p_holm,interpretation,source_dataset_version,analysis_version,through_draw
+1,Z,0.1988556369,10000,PERM,0.8609139086,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+2,Z,0.08466670449,10000,PERM,0.9408059194,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+3,Z,1.997039218,10000,PERM,0.04599540046,0.4599540046,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+4,Z,0.03306672119,10000,PERM,0.9855014499,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+5,Z,0.1136180303,10000,PERM,0.9200079992,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+6,Z,0.6091133943,10000,PERM,0.5397460254,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+7,Z,1.246877221,10000,PERM,0.2149785021,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+8,Z,1.232513649,10000,PERM,0.2262773723,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+9,Z,0.6428318291,10000,PERM,0.5402459754,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+10,Z,1.998045963,10000,PERM,0.04639536046,0.4599540046,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190

@@ -1,0 +1,14 @@
+window_index,start_ordinal,end_ordinal,x2_w,R,null,p_raw,p_holm,interpretation,source_dataset_version,analysis_version,through_draw
+1,1,170,32.11426632,10000,PERM,0.897910209,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+2,86,255,43.21937504,10000,PERM,0.4114588541,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+3,171,340,34.96529894,10000,PERM,0.8051194881,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+4,256,425,32.84960579,10000,PERM,0.8770122988,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+5,341,510,52.35231895,10000,PERM,0.1080891911,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+6,426,595,48.54554653,10000,PERM,0.202479752,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+7,511,680,49.80760514,10000,PERM,0.1654834517,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+8,596,765,49.70730178,10000,PERM,0.1664833517,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+9,681,850,38.18810259,10000,PERM,0.6630336966,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+10,766,935,36.41859457,10000,PERM,0.7397260274,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+11,851,1020,41.15351758,10000,PERM,0.5134486551,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+12,936,1105,38.80326993,10000,PERM,0.6427357264,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+13,1021,1190,37.74482415,10000,PERM,0.6769323068,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190

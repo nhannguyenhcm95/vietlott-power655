@@ -1,0 +1,8 @@
+cell,observed,expected,abs_z,R,null,p_raw,p_holm,interpretation,source_dataset_version,analysis_version,through_draw
+0,17,15.46483705,0.3903748285,10000,FRESH,0.696730327,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+1,116,108.9262436,0.6777723357,10000,FRESH,0.4942505749,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+2,325,295.0085763,1.746142814,10000,FRESH,0.04669533047,0.3268673133,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+3,373,393.3447684,1.025807953,10000,FRESH,0.2174782522,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+4,258,272.3156089,0.8675081387,10000,FRESH,0.3341665833,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+5,82,92.7890223,1.120040667,10000,FRESH,0.2464753525,1,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190
+6,19,12.1509434,1.964833511,10000,FRESH,0.05609439056,0.3365663434,parent not rejected; not interpreted,ds_aa8808303afa,ds_16b6be697acb,01190

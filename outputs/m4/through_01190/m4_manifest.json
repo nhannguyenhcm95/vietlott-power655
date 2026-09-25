@@ -1,0 +1,91 @@
+{
+  "R": 10000,
+  "analysis_version": "ds_16b6be697acb",
+  "code_version": "2fb9ee8b7563a609382add947396f4e059652c81",
+  "escalated": false,
+  "escalation_streams": null,
+  "exploratory": {
+    "c1_chi2_54_49_scaled": {
+      "df": 54,
+      "p_asymptotic": 0.6253952310429463,
+      "statistic": 50.10427027954039
+    },
+    "c5_chi2_10_asymptotic": {
+      "df": 10,
+      "p_asymptotic": 0.7140252615240337,
+      "statistic": 7.120467382451523
+    },
+    "computed": [
+      "c1_chi2_54_49_scaled",
+      "c5_chi2_10_asymptotic",
+      "ljung_box_Q5",
+      "ljung_box_Q20",
+      "conditional_h2_rank",
+      "sum_chi2_m3_bins"
+    ],
+    "conditional_h2_rank": {
+      "R": 2000,
+      "n_prime": 1190,
+      "p_sim": 0.8640679660169915,
+      "statistic": 37.47058823529412,
+      "stream": 103
+    },
+    "deferred": [
+      "per_(year,number)_cells",
+      "quarter_tables",
+      "pair_co_occurrence",
+      "min_max_gap_metrics"
+    ],
+    "deferred_note": "these remain available descriptively in outputs/eda/through_01190 (M3); not recomputed here as new confirmatory-style p-values (ruling (b)).",
+    "label": "exploratory, unadjusted",
+    "ljung_box_Q20": {
+      "df": 20,
+      "p_asymptotic": 0.8389396129583286,
+      "statistic": 13.831415669452086
+    },
+    "ljung_box_Q5": {
+      "df": 5,
+      "p_asymptotic": 0.4508315172071704,
+      "statistic": 4.7212931603973765
+    },
+    "sum_chi2_m3_bins": {
+      "R": 2000,
+      "n_cells": 20,
+      "p_sim": 0.19140429785107446,
+      "statistic": 24.07990992182165,
+      "stream": 104
+    }
+  },
+  "files": {
+    "m4_followup_C1.csv": "233ca7199fdc3a14dd4ca7fdf1e2043485ac4a2165242d55bf774fa99cc61c32",
+    "m4_followup_C11.csv": "4051d95068c67d88f54ccd219c1a504e463789b440cc9e720a5b013b104be350",
+    "m4_followup_C12.csv": "5f3f0d9bcda9211d9ec71254a6a1804ec1c4c8e19c86062dff7327cc07941077",
+    "m4_followup_C13.csv": "22513faad61d864979d550e160b0fae8d47b6353e191b42caaacb59b6193f4bb",
+    "m4_followup_C2.csv": "5773b3820c6becc629f91c9321570b496a2f6fe557e05c6769e0a395c11c44a9",
+    "m4_followup_C3.csv": "a541bf1127b8be51fab9ed24df7cea2573bdf35675d4d242e1133951fac1c88a",
+    "m4_followup_C4.csv": "b47f395fd1f21794a3c61d0e3e0d11205b9d5c708dc1892499866c5b21e4fe2c",
+    "m4_followup_C5.csv": "065837abb41a0f5e14905826dc81f899b9048cd75338539f6907f13f66ff9e41",
+    "m4_followup_C7.csv": "1cb97489f0e34064883e0b752ed0fcb1bda3b301243771e590d6b2e106f2ec3a",
+    "m4_followup_C8.csv": "9ec85cd76bb1e8430fd5574a9b211cbf15f1e1dea526bb5bb91654299e4fd873",
+    "m4_results.csv": "9f954d28a03a551ad6b0cae210c497ca04b993b9d01ca0065ff2f79b1021093d",
+    "summary.md": "e33bbb62ed5495556d87a41b67cb03f0dd46f4e1e69662cc4d762f4ea6f31fd7"
+  },
+  "frozen_dataset_version": "ds_cbdf3834368e",
+  "frozen_prefix_status": "source_dataset_version is ds_aa8808303afa, differing from the frozen split ds_cbdf3834368e because later live draws were ingested. The frozen_prefix rule for draws <=01401 is verified by the M2 quality report, not recomputed here, because the M4 loader is ceiling-limited to draws <=01190. analysis_version ds_16b6be697acb covers only draws <=01190, which the ceiling guarantees.",
+  "library_versions": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1"
+  },
+  "n_draws": 1190,
+  "runtime_seconds": 49.18080735206604,
+  "seed": 20260924,
+  "source_dataset_version": "ds_aa8808303afa",
+  "spec_sha256": "e41f63ef47ea066f14e5effb41bf9f4b7ebd8d79641604b69a10323837e09474",
+  "spec_version": "1.2.1",
+  "streams": {
+    "fresh": 101,
+    "perm": 102
+  },
+  "through_draw": "01190"
+}
