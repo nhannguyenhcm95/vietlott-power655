@@ -16,7 +16,7 @@ Status vocabulary: AI-agent.md §20. The Project Lead (main session) keeps this 
 |---|---|---|---|---|
 | HUMAN-1 | Register the scheduled refresh task | OPS | READY | The human runs `scripts/register_refresh_task.ps1` (see README). Agents never run it. |
 | M0-R | methodology-auditor pass on `docs/SPECIFICATION.md` | DOC / HIGH | DONE | SPECIFICATION v1.2.1 approved by the human (sha256 e41f63ef…09474). |
-| M4 | Confirmatory tests H1–H5 (§6, 13 tests with Holm, range 00001–01190) | STAT / HIGH | READY | The statistician implements or designs `src/statistics` §6, stat-analyst runs it, and methodology-auditor reviews. |
+| M4 | Confirmatory tests H1–H5 (§6, 13 tests with Holm, range 00001–01190) | STAT / HIGH | REWORK | Statistician review REWORK (`reports/review_2026-09-25_M4.md`): the statistics reproduce, but reporting and framing (M1, M2), the calibration test (M3) and m4–m6 need work. The provisional result, 0 of 13 rejected, is recorded before the rework. Next: fixes, commit, a clean-tree run, re-review, then methodology-auditor. |
 | M3-R1 | EDA follow-ups | STAT / LOW | BACKLOG | R1: collapse the pooling leftover when n ≤ 106, and extend T13 to n = 10/60/100. A1: add tests pinning `exact_pmf_approx_band` and the `within_draw_` labels. A2: the `draw_gaps.png` caption should read "exact expected counts; approximate band". stat-analyst implements, qa-runner reviews. Real outputs are unaffected. |
 | M3 | EDA | STAT / MEDIUM | DONE | Statistician review PASSED, Rev 3.2 audit PASSED, and the qa-runner points are resolved (2026-09-25). Outputs are in `outputs/eda/through_01190/`. |
 
