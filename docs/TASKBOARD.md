@@ -16,7 +16,7 @@ Status vocabulary: AI-agent.md §20. The Project Lead (main session) keeps this 
 |---|---|---|---|---|
 | HUMAN-1 | Register the scheduled refresh task | OPS | READY | The human runs `scripts/register_refresh_task.ps1` (see README). Agents never run it. |
 | M0-R | methodology-auditor pass on `docs/SPECIFICATION.md` | DOC / HIGH | DONE | SPECIFICATION v1.2.1 approved by the human (sha256 e41f63ef…09474). |
-| M5 | Baselines 0–2 on development folds (EXP-001) | ML / HIGH | IN_PROGRESS | EXP-001 r2 audit PASSED (sha256 a1959d8c…3872). ml-engineer is implementing it; the recorded run comes after commit. Then review, and the human records the finalists under Decisions. |
+| M5 | Baselines 0–2 on development folds (EXP-001) | ML / HIGH | NEEDS_REVIEW | Implemented (code 1465af7). Recorded run `outputs/m5/EXP-001/1465af7…_20260925T075757Z/`: W* = 200, all sanity asserts passed. methodology-auditor review in progress. Next: the human freezes the finalists. |
 | M4 | Confirmatory tests H1–H5 (§6, 13 tests with Holm, range 00001–01190) | STAT / HIGH | DONE | 0 of 13 rejected at FWER 0.05, so there is no confirmatory evidence against H1–H5 on the development draws. Official run: code 2fb9ee8, outputs in `outputs/m4/through_01190/`. Statistician re-review PASSED, methodology-auditor final audit PASSED, human approval 2026-09-25. |
 | M4-F | M4 follow-ups | STAT / LOW | BACKLOG | F1: add a slow calibration run for C8 alone at n = 510; it is required before the replication. F2: merge the two pooling implementations when M3-R1 is fixed. Nits: fix the C9/C10 CI label (either give the CI of the difference, −0.08 to 4.19, or relabel it), show N only for C7, test the "parent rejected" label, and add the independence caveat to the ≈0.23 line. |
 | M3-R1 | EDA follow-ups | STAT / LOW | BACKLOG | R1: collapse the pooling leftover when n ≤ 106, and extend T13 to n = 10/60/100. A1: add tests pinning `exact_pmf_approx_band` and the `within_draw_` labels. A2: the `draw_gaps.png` caption should read "exact expected counts; approximate band". stat-analyst implements, qa-runner reviews. Real outputs are unaffected. |
@@ -128,6 +128,19 @@ These come from the statistician's M4 re-review. The frozen spec v1.2.1 is NOT e
 ### M5 records (Project Lead, 2026-09-25)
 - **EXP-001 audit:** r1 REWORK (text only), then r2 PASSED on line-diff (sha256 a1959d8c8464e7f4a03be1d765828256e91f698e6f0f14371310c07b211c3872).
 - **§7 tie rule (audit finding 4), Project Lead reading pending human confirmation.** When selecting W, a near-tie means within 1e-12 of the minimum, not chained; the larger W wins. The approved spec text is ambiguous and frozen, so this is recorded as an interpretation, not an edit. In practice it never matters, because distinct W cannot tie at 1e-12.
+- **EXP-001 recorded run ACCEPTED by methodology-auditor** (run_id 1465af7161a9053ca7df7d4d04572789911a5480_20260925T075757Z).
+  - An independent recompute matches to 9 decimals. W* = 200.
+  - Development-pooled deltas sit at the null expectation.
+  - Validation B1 ΔLL is −0.000126 (z ≈ −2.1; P ≈ 4.6% for the most extreme of the 4 configs). This is one common fluctuation on shared draws, NOT evidence that B1 beats B0.
+  - Traceability: the manifest lacks `exp_spec_sha256`, but clean commit 1465af7 contains EXP-001 r2 (a1959d8c…).
+- **EXP-001 code REWORK** (the numbers are unaffected):
+  - F1 MAJOR: the writer and scorer `assert_dev_only` guards are missing or vacuous, and T6 is vacuous.
+  - F2: T11 tolerance.
+  - F3: null references missing from the summary.
+  - F4: manifest fields.
+  - F5: real dirty-tree test.
+  - F6: nit.
+  - After the fix, run one superseding recorded run with identical metrics. Required before EXP-002/003.
 - **Null reference from the auditor simulation** (3000 histories of 1190 draws):
   - W* = 200 in 100% of runs. Any other W* triggers a bug and leakage check first.
   - B1 beats B0 on validation in about 4% of runs.
