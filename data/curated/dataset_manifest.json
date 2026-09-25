@@ -1,19 +1,19 @@
 {
-  "dataset_version": "ds_cbdf3834368e",
+  "dataset_version": "ds_aa8808303afa",
   "source": "vietlott_official",
-  "built_at": "2026-09-24T03:10:28.476659+00:00",
-  "draws": 1401,
+  "built_at": "2026-09-25T02:29:52.405720+00:00",
+  "draws": 1402,
   "first_draw": {
     "draw_id": "00001",
     "draw_date": "2017-08-01"
   },
   "last_draw": {
-    "draw_id": "01401",
-    "draw_date": "2026-09-22"
+    "draw_id": "01402",
+    "draw_date": "2026-09-24"
   },
   "files": {
-    "fact_draw.csv": 1401,
-    "fact_draw_number.csv": 9807,
+    "fact_draw.csv": 1402,
+    "fact_draw_number.csv": 9814,
     "dim_number.csv": 55
   }
 }
