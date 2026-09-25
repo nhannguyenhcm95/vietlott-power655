@@ -1,0 +1,67 @@
+{
+  "analysis_version": "ds_16b6be697acb",
+  "files": {
+    "draw_gaps.png": "031bee7e041d436ebc0a49307ed890c0ca61141573b89e5d2c5fda318615caf3",
+    "draw_metric_distribution.csv": "c2c83f7b25ff15435988e70a83fe810eb21278c3d5177dbac3f46c1734074a51",
+    "draw_metric_summary.csv": "15b52824f9321f554b89c8b1701935da454999ad568bab514716aabecac633a4",
+    "draw_metrics.csv": "8ec4282feba2176152f759e838a321f4fb89c9cf3c7a4ec90f67c59fbd06fadc",
+    "draw_min_max_range.png": "fd9c5d71559eb362cac450190939386ccec9acf5945babb29af2223b904ffbbc",
+    "draw_odd_low_consecutive.png": "98536e0d6c4f732cad7732a88d3bce7bb5b0a66a995e5054d27ee6b3b36419db",
+    "draw_sum.png": "3b7b0644bb7b780b3430d94bd18fcd0239b1d4e97dc6403aa1971fbb8ffb4a59",
+    "eda_summary.md": "cde6e7d7347f4cbedcc509548e67578fe2351eb6e7fc3ff7e9c03c9cd864979f",
+    "mc_reference.csv": "bfc26a11da2077914763126e49e3be08ea636f948ee674c9e3313671a423687f",
+    "null_pmfs.csv": "29bddc09bd1ce9fb80dff92a47b91310ab018cb6eec6979e3e2f9d20cc134160",
+    "number_appearance.csv": "a3461cff1d9aa158c107b92bb6772a0b58990f59a5b5ab38045120f3f308d5b3",
+    "number_cumulative.csv": "122a59a9f36da7e37cb2b79dc4079b5e731f2f8f02674584c3d13d3ad64284a3",
+    "number_cumulative_deviation.png": "29f79a3ac44113a450f8a297a01854644ded1eaee5f0e8613925d5ecc5a0d861",
+    "number_frequency.csv": "edf13e8e751d7efdbbca94cd30706e7eb8f7d102c80f492be61e158e95092b9f",
+    "number_frequency.png": "ef79795399b77a43349f861e6ebb3350204cb8ebf6aef1aa6e43e4c05dfb0646",
+    "number_frequency_by_period.csv": "982e0876d1a2920cb23835da2f12f59234ba73b8b32305834ca27e426ced3aa3",
+    "number_frequency_by_year.png": "339717f6de12cae61ab4b76ea7293225084d4d998e13e7ec8868abe3bbf41db5",
+    "number_interarrival.csv": "0bfa58753546c3528b7e3e7565f7f9b5502178246195e56da71aedea6502d5e4",
+    "number_interarrival.png": "9c0d219ac8bd1a465493edc5e9919deea54c1bbeb766100476414bee3336e9c7",
+    "number_rolling_W100.csv": "41cf25588c2f75d997b1661433758afb4b60e337b38553a31e6a395352d08534",
+    "number_rolling_W100.png": "408bf1cfec76da9e60ab87db150326af6e0bccb011c7a211831c13c45091bd11",
+    "number_rolling_W200.csv": "ddc0a7d03d461ab6e825997e7f52db3d8c210c916ed22def8ceea71835ff9125",
+    "number_rolling_W200.png": "b399a3db2c2746f8e3d7f2b0de23fd6051e23a28b8bf01a9e3fd9971fff7859d",
+    "number_rolling_W50.csv": "8926ebfb496b566145d982dd013874eed404380d0433fddbac5a3d98faebde3b",
+    "number_rolling_W50.png": "0d79a5ddc3c1946ef3dd2dbb014e797c54a6c28b05822d7d08382d3e2241dcd1",
+    "number_rolling_extremes_W100.csv": "2743088cac1444693d83de4859035bb028b9238d690539c9e2243b48ced5f859",
+    "number_rolling_extremes_W200.csv": "c72b09965b5c78a8d82f72e74f44188a46c8b175dd152b8cfcda4963842fb9e8",
+    "number_rolling_extremes_W50.csv": "852bfcdec5d6877c0d562af490918127f51c116b0fc9d50af85d46b53c8ee921",
+    "pair_cooccurrence.csv": "ecddb14eb16114291dc389b2ca4ec2b0cbaf0bf5e19dcb4abe07911461cf82d9",
+    "pair_cooccurrence_heatmap.png": "9a63983468866b40a86233f63d0993a4113402d9f1f737d951b1f43187b6cd3b",
+    "pair_count_distribution.csv": "46fc54bdaeba054e397133b4016797cc8031222bb10dc212c821ac1ba6a1c558",
+    "pair_count_distribution.png": "202f9f36f9b49ae9a8ecad6592a50ed8a6a52126a190ee63d84143ab6783bea6",
+    "special_frequency.csv": "84e9e09090af58e6a386129095cce59f932e3fb8454c81f094abb216c52e2051",
+    "special_frequency.png": "c1001fc48b5aef2555e1098b2b17543600260e7b18efe3779f82c928585b0517",
+    "stability_blocks.csv": "ace3d1076e13a1627ebd1a48b7be2d25df3216b6724142d64c3bc0bf5744bba1",
+    "stability_blocks.png": "e9efec50562c1e745e2abbf2819bc55ed2bc6dfc7f1b21003425bac43c28a1cd"
+  },
+  "library_versions": {
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1"
+  },
+  "n_draws": 1190,
+  "override_ref": "",
+  "params": {
+    "mc_reps": 10000,
+    "n_blocks": 5,
+    "windows": [
+      50,
+      100,
+      200
+    ]
+  },
+  "seed": 20260924,
+  "source_dataset_version": "ds_cbdf3834368e",
+  "spec_sha256": "e41f63ef47ea066f14e5effb41bf9f4b7ebd8d79641604b69a10323837e09474",
+  "spec_version": "1.2.1",
+  "streams": {
+    "main": 1,
+    "special": 2
+  },
+  "through_draw": "01190"
+}
